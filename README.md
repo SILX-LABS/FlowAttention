@@ -1,10 +1,4 @@
-███████╗██╗██╗     ██╗  ██╗     █████╗ ██╗
-██╔════╝██║██║     ██║ ██╔╝    ██╔══██╗██║
-███████╗██║██║      ████╔╝     ███████║██║
-╚════██║██║██║     ██╔═██╗     ██╔══██║██║
-███████║██║███████╗██║  ██╗    ██║  ██║██║
-╚══════╝╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝
-
+ 
 # Flow Attention  
 A Linear-Time Drop-in Replacement for Multi-Head Attention
 
@@ -14,14 +8,14 @@ Lead Researcher: Eyad Gomaa
 
 ---
 
----
-
 🧪 Disclaimer
 
 ⚠️ Early Experimental Work  
 This research is part of the Quasar project — our ongoing search for better architectures for language modeling.  
 It has not been tested on large-scale clusters or production workloads.  
 These are early-stage experiments intended to explore new frontiers in attention design.
+
+---
 
 ## Overview
 
@@ -34,20 +28,10 @@ Unlike standard Multi-Head Attention which relies on expensive O(n²) pairwise t
 
 ## Architecture
 
-Given a sequence of tokens:
-\[
-X = [x_1, x_2, \dots, x_n],\quad H \in \mathbb{R}^{n \times d}
-\]
-
-Traditional MHA computes an attention matrix:
-\[
-A \in \mathbb{R}^{n \times n}
-\]
-requiring O(n²) operations.
-
-Flow Attention replaces this with a bidirectional flow operator, enabling contribution learning to determine how each token influences the global context, bidirectional flow propagation to move context forward and backward efficiently, and position-aware integration to inject structure without explicit pairwise attention.  
-This design makes Flow Attention a drop-in replacement for MHA layers in existing architectures.
-
+Flow Attention eliminates the quadratic attention matrix and replaces it with a continuous bidirectional flow mechanism.  
+Instead of computing dense pairwise interactions between every token, it learns how information should flow through the sequence in both directions.  
+Each token contributes to the evolving context, which is updated step by step with position-aware integration.  
+This design achieves linear complexity while retaining the ability to model long-range dependencies.  
 
 ---
 
@@ -58,4 +42,5 @@ Preserve contextual reasoning in language models.
 Provide a scalable path to massive models on limited compute.
 
 ---
+
 
